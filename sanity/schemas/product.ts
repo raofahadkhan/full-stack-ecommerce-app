@@ -23,6 +23,11 @@ export default {
 			type: "string",
 		},
 		{
+			name: "collection",
+			title: "Collection",
+			type: "string",
+		},
+		{
 			name: "slug",
 			title: "Slug",
 			type: "slug",
