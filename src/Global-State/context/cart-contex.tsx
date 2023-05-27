@@ -12,6 +12,20 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const [state, dispatch] = useReducer(CartReducer, initialState);
 
+	useEffect(() => {
+		let cartData = localStorage.getItem("cart") as string;
+
+		if (cartData == null) {
+			localStorage.setItem("cart", JSON.stringify(state.cart));
+		} else {
+			initialState.cart = JSON.parse(cartData);
+		}
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem("cart", JSON.stringify(state.cart));
+	}, [state.cart]);
+
 	const getProductData = async () => {
 		const res = await client.fetch(`*[_type=="product"]`);
 		return res;
