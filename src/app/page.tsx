@@ -1,4 +1,3 @@
-// import { client } from "@/lib/sanityClient";
 import { client } from "../../sanity/lib/client";
 
 export const getProductData = async () => {
