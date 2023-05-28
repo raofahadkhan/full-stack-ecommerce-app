@@ -7,6 +7,5 @@ const getProductData = async () => {
 
 export default async function Home() {
 	const data = await getProductData();
-	// console.log(typeof data);
-	return <></>;
+	return <div>{JSON.stringify(data)}</div>;
 }
