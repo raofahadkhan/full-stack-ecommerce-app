@@ -1,6 +1,6 @@
 import { client } from "../../sanity/lib/client";
 
-export const getProductData = async () => {
+const getProductData = async () => {
 	const res = await client.fetch(`*[_type=="product"]`);
 	return res;
 };

@@ -20,7 +20,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		} else {
 			initialState.cart = JSON.parse(cartData);
 		}
-	}, []);
+	});
 
 	useEffect(() => {
 		localStorage.setItem("cart", JSON.stringify(state.cart));
