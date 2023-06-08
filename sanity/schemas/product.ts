@@ -2,14 +2,15 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
 	name: "product",
-	title: "Product",
+	title: "Books",
 	type: "document",
 	fields: [
 		defineField({
 			name: "image",
 			title: "Image",
-			type: "array",
-			of: [{ type: "image" }],
+			type: "image",
+			// type: "array",
+			// of: [{ type: "image" }],
 		}),
 		defineField({
 			name: "name",

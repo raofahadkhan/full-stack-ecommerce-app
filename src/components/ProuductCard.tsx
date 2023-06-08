@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { FC } from "react";
 import { urlForImage } from "../../sanity/lib/image";
 import { Image as IImage } from "sanity";
 
@@ -15,7 +15,18 @@ interface IProduct {
 		name: string;
 	};
 }
-const ProuductCard = ({ item }: any) => {
+const ProuductCard: FC<{ item: any }> = ({ item }) => {
+	const handleAddToCart = async () => {
+		const res = await fetch("/api/cart", {
+			method: "POST",
+			body: JSON.stringify({
+				product_id: item._id,
+			}),
+		});
+
+		const result = await res.json();
+		console.log("cart result", result);
+	};
 	return (
 		<div>
 			<Image
@@ -27,7 +38,10 @@ const ProuductCard = ({ item }: any) => {
 			/>
 			<h2>{item.name}</h2>
 			<h3>${item.price}</h3>
-			<button className="rounded border  bg-blue-600 px-6 py-2 text-white">
+			<button
+				onClick={() => handleAddToCart()}
+				className="rounded border  bg-blue-600 px-6 py-2 text-white"
+			>
 				Add to Cart
 			</button>
 		</div>

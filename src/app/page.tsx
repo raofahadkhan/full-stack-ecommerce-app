@@ -1,8 +1,6 @@
-import Image from "next/image";
-import { client } from "../../sanity/lib/client";
-import { Image as IImage } from "sanity";
-import { urlForImage } from "../../sanity/lib/image";
 import ProuductCard from "@/components/ProuductCard";
+import { Image as IImage } from "sanity";
+import { client } from "../../sanity/lib/client";
 
 const getProductData = async () => {
 	const res = await client.fetch(`*[_type=="product"]{
