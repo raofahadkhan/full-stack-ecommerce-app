@@ -2,6 +2,7 @@ import ProuductCard from "@/components/ProuductCard";
 import { Image as IImage } from "sanity";
 import { client } from "../../sanity/lib/client";
 import Hero from "@/components/Hero_Section/Hero";
+import New_Release from "@/components/New_Release/New_Release";
 
 const getProductData = async () => {
 	const res = await client.fetch(`*[_type=="product"]{
@@ -39,6 +40,7 @@ export default async function Home() {
 				<ProuductCard key={index} item={item} />
 			))} */}
 			<Hero />
+			<New_Release />
 		</div>
 	);
 }

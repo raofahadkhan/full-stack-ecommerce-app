@@ -86,3 +86,27 @@ export const heroSection = {
 	],
 	bigImage: "/images/heroBook.jpg",
 };
+
+// New Release Data
+export const newReleases = {
+	mainText: "New Releases in Books",
+	mainText2: "Our best-selling new and future releases.",
+	mainText3: "Updated frequently.",
+	showcase: [
+		{
+			image: "/images/bestSeller.webp",
+		},
+
+		{
+			image: "/images/bestSeller1.webp",
+		},
+
+		{
+			image: "/images/bestSeller2.webp",
+		},
+
+		{
+			image: "/images/bestSeller3.webp",
+		},
+	],
+};

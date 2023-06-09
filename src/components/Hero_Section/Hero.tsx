@@ -1,9 +1,8 @@
-import React from "react";
+import { heroSection } from "@/data/data";
+import { companiesLogoType, heroSectionType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import { BsCart2 } from "react-icons/bs";
-import { heroSection } from "@/data/data";
-import { companiesLogoType, heroSectionType } from "@/types/types";
 
 const Hero = () => {
 	const {

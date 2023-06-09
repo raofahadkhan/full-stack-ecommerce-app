@@ -45,3 +45,15 @@ export type heroSectionType = {
 	companiesLogo: companiesLogoType[];
 	bigImage: string;
 };
+
+// New Release Type
+export type showcaseType = {
+	image: string;
+};
+
+export type newReleasesType = {
+	mainText: string;
+	mainText2: string;
+	mainText3: string;
+	showcase: showcaseType[];
+};
