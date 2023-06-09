@@ -30,7 +30,7 @@ const ProuductCard: FC<{ item: any }> = ({ item }) => {
 	return (
 		<div>
 			<Image
-				src={urlForImage(item.image[0]).url()}
+				src={urlForImage(item.image).url()}
 				alt="product-card"
 				className="max-h-[250px] object-cover object-top"
 				width={300}
