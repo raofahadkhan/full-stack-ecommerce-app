@@ -30,3 +30,18 @@ export type footerDataType = {
 	kitaabText: string;
 	kitaabLink: string;
 };
+
+// Hero Section Type
+export type companiesLogoType = {
+	image: string;
+};
+
+export type heroSectionType = {
+	saleText: string;
+	title: string;
+	subtitle: string;
+	buttonText: string;
+	buttonTextHref: string;
+	companiesLogo: companiesLogoType[];
+	bigImage: string;
+};

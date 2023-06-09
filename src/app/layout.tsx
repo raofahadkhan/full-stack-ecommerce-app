@@ -1,9 +1,8 @@
 import Header from "@/components/Header/Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import Footer from "@/components/Footer/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Sora } from "next/font/google";
+const sora = Sora({ subsets: ["latin"] });
 
 export const metadata = {
 	title: "Book Store",
@@ -17,7 +16,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body className={sora.className}>
 				<Header />
 				{children}
 				<Footer />
