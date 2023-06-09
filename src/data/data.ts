@@ -7,6 +7,14 @@ export const navbarData = {
 			href: "new-release",
 		},
 		{
+			label: "Fiction",
+			href: "fiction",
+		},
+		{
+			label: "Non-Fiction",
+			href: "non-fiction",
+		},
+		{
 			label: "All Books",
 			href: "all-books",
 		},
@@ -170,7 +178,7 @@ export const uniqueSection = {
 
 // Newsletter Section Data
 export const newsletterData = {
-  title: "Subscribe Our Newsletter",
-  subTitle: "Get the latest information and promo offers directly",
-  buttonText: "Get Started",
+	title: "Subscribe Our Newsletter",
+	subTitle: "Get the latest information and promo offers directly",
+	buttonText: "Get Started",
 };
