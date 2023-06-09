@@ -153,3 +153,17 @@ export const homeProducts = {
 		},
 	],
 };
+
+// Unique Section Data
+export const uniqueSection = {
+	uniqueImg: [
+		{
+			uniqueImg: "/images/unique1.webp",
+		},
+		{
+			uniqueImg: "/images/unique2.webp",
+		},
+	],
+	buttonText: "View All Books",
+	buttonTextHref: "#",
+};

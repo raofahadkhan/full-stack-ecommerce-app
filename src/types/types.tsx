@@ -70,3 +70,13 @@ export type homeProductsType = {
 	subTitle: string;
 	sliderProduct: sliderProductType[];
 };
+
+// Unique Section Type
+export type uniqueImgType = {
+	uniqueImg: string;
+};
+export type uniqueSectionType = {
+	uniqueImg: uniqueImgType[];
+	buttonText: string;
+	buttonTextHref: string;
+};
