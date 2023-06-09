@@ -57,3 +57,16 @@ export type newReleasesType = {
 	mainText3: string;
 	showcase: showcaseType[];
 };
+
+// Home Products Type
+export type sliderProductType = {
+	image: string;
+	productTitle: string;
+	price: string;
+};
+
+export type homeProductsType = {
+	title: string;
+	subTitle: string;
+	sliderProduct: sliderProductType[];
+};

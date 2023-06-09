@@ -110,3 +110,46 @@ export const newReleases = {
 		},
 	],
 };
+
+// Home Products Data
+export const homeProducts = {
+	title: "PRODUCTS",
+	subTitle: "Check What We Have",
+	sliderProduct: [
+		{
+			image: "/images/homeProduct/1.jpg",
+			productTitle: "Central Park West",
+			price: "14.99",
+		},
+
+		{
+			image: "/images/homeProduct/2.jpg",
+			productTitle: "Nora Roberts Identity",
+			price: "20.05",
+		},
+
+		{
+			image: "/images/homeProduct/3.jpg",
+			productTitle: "You Look Beautiful Tonight",
+			price: "30.15",
+		},
+
+		{
+			image: "/images/homeProduct/4.jpg",
+			productTitle: "The Silent Bride",
+			price: "29.99",
+		},
+
+		{
+			image: "/images/homeProduct/5.jpg",
+			productTitle: "The Housemaid",
+			price: "9.99",
+		},
+
+		{
+			image: "/images/homeProduct/6.jpg",
+			productTitle: "The Worst Wedding Date",
+			price: "49.99",
+		},
+	],
+};
