@@ -80,3 +80,10 @@ export type uniqueSectionType = {
 	buttonText: string;
 	buttonTextHref: string;
 };
+
+// Newsletter Section Type
+export type newsletterDataType = {
+	title: string;
+	subTitle: string;
+	buttonText: string;
+};

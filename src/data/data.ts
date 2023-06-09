@@ -167,3 +167,10 @@ export const uniqueSection = {
 	buttonText: "View All Books",
 	buttonTextHref: "#",
 };
+
+// Newsletter Section Data
+export const newsletterData = {
+  title: "Subscribe Our Newsletter",
+  subTitle: "Get the latest information and promo offers directly",
+  buttonText: "Get Started",
+};

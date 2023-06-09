@@ -5,6 +5,7 @@ import Hero from "@/components/Hero_Section/Hero";
 import New_Release from "@/components/New_Release/New_Release";
 import Home_Products from "@/components/Home_Products/Home_Products";
 import UniqueSection from "@/components/Unique_Section/Unique_Section";
+import NewsLetter from "@/components/Newsletter/Newsletter";
 
 const getProductData = async () => {
 	const res = await client.fetch(`*[_type=="product"]{
@@ -45,6 +46,7 @@ export default async function Home() {
 			<New_Release />
 			<Home_Products />
 			<UniqueSection />
+			<NewsLetter />
 		</div>
 	);
 }
