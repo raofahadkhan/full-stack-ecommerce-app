@@ -13,7 +13,7 @@ const getProductData = async () => {
 		name,
 		price,
 		_id,
-		title,
+		slug,
 		image,
 		category -> {
 			name

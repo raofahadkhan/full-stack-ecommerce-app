@@ -1,4 +1,5 @@
-import "./globals.css";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Navbar";
 import { Sora } from "next/font/google";
 const sora = Sora({ subsets: ["latin"] });
 
@@ -14,7 +15,11 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={sora.className}>{children}</body>
+			<body className={sora.className}>
+				<Header />
+				{children}
+				<Footer />
+			</body>
 		</html>
 	);
 }

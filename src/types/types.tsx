@@ -92,9 +92,9 @@ export type newsletterDataType = {
 
 // Product Array Type from Sanity
 export type IProduct = {
-	title: string;
 	name: string;
 	_id: string;
+	slug: string;
 	description: string;
 	price: number;
 	image: IImage;
