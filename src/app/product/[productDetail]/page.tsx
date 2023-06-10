@@ -21,6 +21,14 @@ const getProductData = async () => {
 	return res;
 };
 
+export async function generateStaticParams() {
+	const data = await getProductData();
+
+	return data.map((item: IProduct) => ({
+		productDetail: item.slug.current,
+	}));
+}
+
 const page = async ({ params }: { params: { productDetail: string } }) => {
 	const data = await getProductData();
 	const productData = data.find(

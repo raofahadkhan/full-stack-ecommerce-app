@@ -33,8 +33,8 @@ const Non_Fiction = async () => {
 				<div className="grid grid-cols-4 gap-x-[4rem] gap-y-[3rem] sm:grid-cols-1 mm:grid-cols-2 ml:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
 					{newReleasesData.map((item: IProduct, index: number) => {
 						return (
-							<Link href={`/product/${item.slug.current}`}>
-								<div key={index}>
+							<Link href={`/product/${item.slug.current}`} key={index}>
+								<div>
 									<Image
 										src={urlForImage(item.image).url()}
 										alt="bookOne"
