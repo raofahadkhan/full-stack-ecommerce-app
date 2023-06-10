@@ -43,7 +43,7 @@ export default defineType({
 		}),
 		defineField({
 			name: "category",
-			title: "Product Category",
+			title: "Category",
 			type: "reference",
 			to: [
 				{
