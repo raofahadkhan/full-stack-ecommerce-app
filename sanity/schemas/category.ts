@@ -9,9 +9,9 @@ export const category = defineType({
 			name: "name",
 			title: "Category Name",
 			type: "string",
-			// options: {
-			// 	list: ["Male", "Female", "Kids"],
-			// },
+			options: {
+				list: ["New-Release", "Fiction", "Non-Fiction"],
+			},
 		}),
 	],
 });
