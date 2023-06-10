@@ -1,11 +1,12 @@
 "use client";
-import { sliderProductType } from "@/types/types";
+import { IProduct } from "@/types/types";
 import Image from "next/image";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { urlForImage } from "../../../sanity/lib/image";
 import "../../app/swiper.module.css";
 
-const ProductSlider = ({ sliderData }: { sliderData: sliderProductType[] }) => {
+const ProductSlider = ({ sliderData }: { sliderData: IProduct[] }) => {
 	return (
 		<div className="mx-auto max-w-[73rem] overflow-hidden px-10 pb-[50px] pt-[50px]">
 			<Swiper
@@ -31,12 +32,12 @@ const ProductSlider = ({ sliderData }: { sliderData: sliderProductType[] }) => {
 					},
 				}}
 			>
-				{sliderData.map((item: sliderProductType, index: number) => (
+				{sliderData.map((item: IProduct, index: number) => (
 					<SwiperSlide key={index}>
 						<div>
 							<Image
-								src={item.image}
-								alt="bookOne"
+								src={urlForImage(item.image).url()}
+								alt="books"
 								width={500}
 								height={500}
 								className="m-auto h-[346px] w-[212px] sm:h-[100%] sm:w-[100%] md:h-[346px] md:w-[212px] lg:h-[346px] lg:w-[212px] xl:h-[346px] xl:w-[212px]"
@@ -44,7 +45,7 @@ const ProductSlider = ({ sliderData }: { sliderData: sliderProductType[] }) => {
 
 							<div className="mt-[8px] text-center">
 								<h3 className="text-[16px] font-semibold text-[#212121]">
-									{item.productTitle}
+									{item.name}
 								</h3>
 
 								<h4 className="text-[15px] font-semibold text-[#212121]">

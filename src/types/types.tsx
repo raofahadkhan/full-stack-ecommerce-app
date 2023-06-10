@@ -1,3 +1,5 @@
+import { Image as IImage } from "sanity";
+
 // Navbar Type
 export type linksType = {
 	label: string;
@@ -86,4 +88,17 @@ export type newsletterDataType = {
 	title: string;
 	subTitle: string;
 	buttonText: string;
+};
+
+// Product Array Type from Sanity
+export type IProduct = {
+	title: string;
+	name: string;
+	_id: string;
+	description: string;
+	price: number;
+	image: IImage;
+	category: {
+		name: string;
+	};
 };

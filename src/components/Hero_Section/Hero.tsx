@@ -65,7 +65,7 @@ const Hero = () => {
 					</div>
 				</div>
 
-				<div className="sm:hidden md:hidden lg:block xl:block">
+				<div className="xs:hidden sm:hidden md:hidden lg:block xl:block">
 					<Image
 						src={bigImage}
 						alt="book hero image."
