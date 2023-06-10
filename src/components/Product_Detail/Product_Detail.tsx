@@ -47,7 +47,7 @@ const Product_Detail = ({ data }: { data: IProduct }) => {
 							<span className="text-[16px]">Add to Cart</span>
 						</button>
 						<span className="text-3xl font-bold leading-7 tracking-widest text-[#212121]">
-							{data.price}
+							${data.price}
 						</span>
 					</div>
 				</div>
