@@ -2,6 +2,7 @@ import { newReleases } from "@/data/data";
 import { IProduct, newReleasesType, showcaseType } from "@/types/types";
 import Image from "next/image";
 import { urlForImage } from "../../../sanity/lib/image";
+import Link from "next/link";
 
 const NewRelease = ({ data }: { data: IProduct[] }) => {
 	const { mainText, mainText2, mainText3 }: newReleasesType = newReleases;
@@ -24,21 +25,21 @@ const NewRelease = ({ data }: { data: IProduct[] }) => {
 			<div className="mt-[40px]">
 				<div className="flex flex-wrap justify-between sm:justify-center md:justify-center md:gap-x-[12px] lg:justify-between lg:gap-x-[12px] xl:justify-between xl:gap-x-[12px]">
 					{showcase &&
-						showcase.map((item: IProduct, index: number) => {
-							return (
-								<div
-									key={index}
-									className="transition-all duration-500 ease-in hover:scale-110 sm:mb-[20px] md:mb-[unset] lg:mb-[unset] xl:mb-[unset]"
-								>
+						showcase.map((item: IProduct, index: number) => (
+							<div
+								key={index}
+								className="transition-all duration-500 ease-in hover:scale-110 sm:mb-[20px] md:mb-[unset] lg:mb-[unset] xl:mb-[unset]"
+							>
+								<Link href={`/product/${item.slug.current}`}>
 									<Image
 										src={urlForImage(item.image).url()}
 										width={200}
 										height={200}
 										alt="best one"
 									/>
-								</div>
-							);
-						})}
+								</Link>
+							</div>
+						))}
 				</div>
 			</div>
 		</div>

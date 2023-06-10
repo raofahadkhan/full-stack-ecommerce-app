@@ -100,8 +100,12 @@ export type IProduct = {
 	};
 	description: string;
 	price: number;
+	tagline: string;
 	image: IImage;
 	category: {
+		name: string;
+	};
+	author: {
 		name: string;
 	};
 };

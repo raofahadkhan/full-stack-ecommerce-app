@@ -11,9 +11,13 @@ const getProductData = async () => {
 		_id,
 		slug,
 		image,
+    tagline,
 		category -> {
 			name
-		}
+		},
+    author -> {
+      name
+    }
 	}`);
 	return res;
 };
@@ -30,7 +34,7 @@ const NewRelease = async () => {
 					{newReleasesData.map((item: IProduct, index: number) => {
 						return (
 							<div key={index}>
-								<Link href={item.slug.current}>
+								<Link href={`/product/${item.slug.current}`}>
 									<Image
 										src={urlForImage(item.image).url()}
 										alt="bookOne"

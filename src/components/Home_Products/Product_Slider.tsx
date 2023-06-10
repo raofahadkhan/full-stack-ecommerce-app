@@ -5,6 +5,7 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { urlForImage } from "../../../sanity/lib/image";
 import "../../app/swiper.module.css";
+import Link from "next/link";
 
 const ProductSlider = ({ sliderData }: { sliderData: IProduct[] }) => {
 	return (
@@ -35,6 +36,7 @@ const ProductSlider = ({ sliderData }: { sliderData: IProduct[] }) => {
 				{sliderData.map((item: IProduct, index: number) => (
 					<SwiperSlide key={index}>
 						<div>
+						<Link href={`/product/${item.slug.current}`}>
 							<Image
 								src={urlForImage(item.image).url()}
 								alt="books"
@@ -52,6 +54,7 @@ const ProductSlider = ({ sliderData }: { sliderData: IProduct[] }) => {
 									${item.price}
 								</h4>
 							</div>
+							</Link>
 						</div>
 					</SwiperSlide>
 				))}

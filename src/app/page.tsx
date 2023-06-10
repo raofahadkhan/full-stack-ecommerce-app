@@ -15,7 +15,11 @@ const getProductData = async () => {
 		_id,
 		slug,
 		image,
+		tagline,
 		category -> {
+			name
+		},
+		author -> {
 			name
 		}
 	}`);
