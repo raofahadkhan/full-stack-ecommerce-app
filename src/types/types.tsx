@@ -94,7 +94,10 @@ export type newsletterDataType = {
 export type IProduct = {
 	name: string;
 	_id: string;
-	slug: string;
+	slug: {
+		current: string;
+		_type: string;
+	};
 	description: string;
 	price: number;
 	image: IImage;

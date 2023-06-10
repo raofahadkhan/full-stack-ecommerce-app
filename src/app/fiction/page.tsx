@@ -18,10 +18,10 @@ const getProductData = async () => {
 	return res;
 };
 
-const NewRelease = async () => {
+const Fiction = async () => {
 	const data = await getProductData();
 	const newReleasesData = data.filter(
-		(item: IProduct) => item.category.name == "New-Release"
+		(item: IProduct) => item.category.name == "Fiction"
 	);
 	return (
 		<>
@@ -57,4 +57,4 @@ const NewRelease = async () => {
 	);
 };
 
-export default NewRelease;
+export default Fiction;
