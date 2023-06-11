@@ -63,7 +63,7 @@ const Header = () => {
 							<input
 								type="text"
 								placeholder="What you're looking for"
-								className="w-full px-[5px] py-[5px] text-[16px] focus:outline-none"
+								className="w-full border-none px-[5px] py-[5px] text-[16px] focus:outline-none"
 							/>
 						</div>
 
