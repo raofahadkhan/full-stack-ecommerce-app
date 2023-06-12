@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "@portabletext/react": "^3.0.0",
     "@sanity/client": "^6.1.2",
     "@sanity/image-url": "^1.0.2",
@@ -33,6 +34,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@types/pg": "^8.10.1",
     "drizzle-kit": "^0.18.1",
     "prettier": "^2.8.8",
