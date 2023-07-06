@@ -1,9 +1,39 @@
+"use client";
 import { IProduct } from "@/types/types";
 import Image from "next/image";
 import { BsCart } from "react-icons/bs";
 import { urlForImage } from "../../../sanity/lib/image";
+import { useState } from "react";
+
+const postDataToDb = async (data: any) => {
+	try {
+		await fetch("/api/cart", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				product_id: data.product_id,
+				product_title: data.product_title,
+				product_image: urlForImage(data.product_image).url(),
+				product_price: data.product_price,
+				quantity: data.product_quantity,
+			}),
+		});
+	} catch (error) {
+		console.log(error, "error");
+	}
+};
 
 const Product_Detail = ({ data }: { data: IProduct }) => {
+	const [qty, setQty] = useState(1);
+	let product = {
+		product_id: data._id,
+		product_title: data.name,
+		product_image: data.image,
+		product_price: data.price,
+		product_quantity: qty,
+	};
 	return (
 		<>
 			<div className="flex gap-[34px] sm:block md:flex lg:flex xl:flex">
@@ -31,18 +61,27 @@ const Product_Detail = ({ data }: { data: IProduct }) => {
 						<h3>Quantity:</h3>
 
 						<div className="flex items-center gap-3">
-							<button className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-100 bg-white text-3xl font-light shadow-md hover:shadow-lg">
+							<button
+								onClick={() => (qty > 1 ? setQty(qty - 1) : setQty(1))}
+								className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-100 bg-white text-3xl font-light shadow-md hover:shadow-lg"
+							>
 								-
 							</button>
-							<p>1</p>
-							<button className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-100 bg-white text-2xl font-light shadow-md hover:shadow-lg">
+							<p>{qty}</p>
+							<button
+								onClick={() => setQty(qty + 1)}
+								className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-100 bg-white text-2xl font-light shadow-md hover:shadow-lg"
+							>
 								+
 							</button>
 						</div>
 					</div>
 
 					<div className="mt-[40px] flex items-center gap-3">
-						<button className="prodsc:text-sm subsc:w-[50%] navsc:w-auto navsc:px-4 flex items-center justify-center gap-2 bg-[#212121] px-2 py-[0.65rem] text-xs font-medium leading-4 text-[#fff]">
+						<button
+							onClick={() => postDataToDb(product)}
+							className="prodsc:text-sm subsc:w-[50%] navsc:w-auto navsc:px-4 flex items-center justify-center gap-2 bg-[#212121] px-2 py-[0.65rem] text-xs font-medium leading-4 text-[#fff]"
+						>
 							<BsCart size={22} />
 							<span className="text-[16px]">Add to Cart</span>
 						</button>
