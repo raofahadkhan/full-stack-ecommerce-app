@@ -47,9 +47,24 @@ export const POST = async (request: NextRequest) => {
 			.returning();
 
 		return NextResponse.json({ res });
-	} catch (error) {}
+	} catch (error) {
+		return NextResponse.json({ error });
+	}
 };
 
 export const PUT = async (request: NextRequest) => {
-	const req = request.json();
+	const req = await request.json();
+
+	try {
+		const res = await db
+			.update(cartTable)
+			.set({ product_price: req.updated_price })
+			.where(eq(cartTable.id, req.id))
+			.returning();
+
+		return NextResponse.json({ res });
+	} catch (error) {
+		return NextResponse.json({ error });
+	}
 };
+
