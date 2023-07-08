@@ -68,3 +68,15 @@ export const PUT = async (request: NextRequest) => {
 	}
 };
 
+export const DELETE = async (request: NextRequest) => {
+	try {
+		const req = await request.json();
+		const res = await db
+			.delete(cartTable)
+			.where(eq(cartTable.id, req.id))
+			.returning();
+		return NextResponse.json({ res });
+	} catch (error) {
+		return NextResponse.json({ message: "Something Went Wrong" });
+	}
+};
