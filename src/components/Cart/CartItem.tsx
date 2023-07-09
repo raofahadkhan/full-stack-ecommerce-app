@@ -3,6 +3,7 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import { CartDataPropType } from "./CartHavingItems";
 import { BASE_PATH } from "@/lib/basepath";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const deleteItemFromCart = async (itemId: number) => {
 	try {
@@ -18,8 +19,31 @@ const deleteItemFromCart = async (itemId: number) => {
 	} catch (error) {}
 };
 
+const updateCartItemQty = async (
+	cartItemId: number,
+	updated_qty: number,
+	action: string
+) => {
+	updated_qty = action === "INCREASE" ? updated_qty + 1 : updated_qty - 1;
+
+	try {
+		await fetch(`${BASE_PATH}/api/cart`, {
+			method: "PUT",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({
+				id: cartItemId,
+				quantity: updated_qty,
+			}),
+		});
+	} catch (error) {}
+};
+
 const CartItem = ({ product }: { product: CartDataPropType }) => {
 	const { refresh } = useRouter();
+	const [updatedQty, setUpdatedQty] = useState<number>(product.quantity);
+	const [btndisable, setBtndisable] = useState(false);
 
 	return (
 		<li className="flex py-6 mmd:py-10">
@@ -52,14 +76,37 @@ const CartItem = ({ product }: { product: CartDataPropType }) => {
 					<div className="mt-4 mmd:mt-0 mmd:pr-9">
 						<div className="flex rounded-md text-left text-base font-medium leading-5 text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 mmd:text-sm">
 							<div className="flex border border-gray-300 shadow-sm">
-								<button className="px-3 py-1 text-center hover:bg-gray-200">
+								<button
+									className={`px-3 py-1 text-center hover:bg-gray-200
+									${btndisable ? "text-gray-300" : "text-gray-800"}`}
+									onClick={(e) => {
+										e.preventDefault();
+										setBtndisable(true);
+										setUpdatedQty(updatedQty + 1);
+										updateCartItemQty(product.id, updatedQty, "DECREASE");
+										refresh();
+										setTimeout(() => {
+											setBtndisable(false);
+										}, 1000);
+									}}
+								>
 									-
 								</button>
-								<div className="px-3 py-1 text-center">{1}</div>
+								<div className="px-3 py-1 text-center">{product.quantity}</div>
 								<button
-									className={`px-3 py-1 text-center hover:bg-gray-200`}
-									//  ${ 	btndisable ? "text-gray-300" : "text-gray-800"
-									// }`}
+									disabled={btndisable}
+									className={`px-3 py-1 text-center hover:bg-gray-200
+									 ${btndisable ? "text-gray-300" : "text-gray-800"}`}
+									onClick={(e) => {
+										e.preventDefault();
+										setBtndisable(true);
+										setUpdatedQty(updatedQty + 1);
+										updateCartItemQty(product.id, updatedQty, "INCREASE");
+										refresh();
+										setTimeout(() => {
+											setBtndisable(false);
+										}, 1000);
+									}}
 								>
 									+
 								</button>

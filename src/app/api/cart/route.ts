@@ -59,7 +59,7 @@ export const PUT = async (request: NextRequest) => {
 	try {
 		const res = await db
 			.update(cartTable)
-			.set({ product_price: req.updated_price })
+			.set({ quantity: req.quantity })
 			.where(eq(cartTable.id, req.id))
 			.returning();
 
