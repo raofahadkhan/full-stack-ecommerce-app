@@ -1,51 +1,8 @@
 "use client";
-import {
-	CheckIcon,
-	ClockIcon,
-	QuestionMarkCircleIcon,
-	XMarkIcon,
-} from "@heroicons/react/20/solid";
+import { QuestionMarkCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import CartItem from "./CartItem";
 
-const products = [
-	{
-		id: 1,
-		name: "Basic Tee",
-		href: "#",
-		price: "$32.00",
-		color: "Sienna",
-		inStock: true,
-		size: "Large",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-01.jpg",
-		imageAlt: "Front of men's Basic Tee in sienna.",
-	},
-	{
-		id: 2,
-		name: "Basic Tee",
-		href: "#",
-		price: "$32.00",
-		color: "Black",
-		inStock: false,
-		leadTime: "3–4 weeks",
-		size: "Large",
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-02.jpg",
-		imageAlt: "Front of men's Basic Tee in black.",
-	},
-	{
-		id: 3,
-		name: "Nomad Tumbler",
-		href: "#",
-		price: "$35.00",
-		color: "White",
-		inStock: true,
-		imageSrc:
-			"https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-03.jpg",
-		imageAlt: "Insulated bottle with white base and black snap lid.",
-	},
-];
-
-interface CartDataPropType {
+export interface CartDataPropType {
 	id: number;
 	user_id: string;
 	product_id: string;
@@ -78,65 +35,8 @@ export default function CartHavingItems({
 							role="list"
 							className="divide-y divide-gray-200 border-b border-t border-gray-200"
 						>
-							{data.map((product, productIdx) => (
-								<li key={productIdx} className="flex py-6 mmd:py-10">
-									<div className="flex-shrink-0">
-										<img
-											src={product.product_image}
-											alt="Product Image"
-											className="h-24 w-24 rounded-md object-contain object-center mmd:h-48 mmd:w-48"
-										/>
-									</div>
-
-									<div className="ml-4 flex flex-1 flex-col justify-between mmd:ml-6">
-										<div className="relative pr-9 mmd:grid mmd:grid-cols-2 mmd:gap-x-6 mmd:pr-0">
-											<div>
-												<div className="flex justify-between">
-													<h3 className="text-sm">
-														<p className="font-medium text-gray-700 hover:text-gray-800">
-															{product.product_title}
-														</p>
-													</h3>
-												</div>
-												<p className="mt-1 text-sm font-medium text-gray-900">
-													{/* ${product.product_price} */}
-													By: {product.product_author}
-												</p>
-												<p className="mt-1 text-sm font-medium text-gray-900">
-													Price: ${product.product_price}
-												</p>
-											</div>
-
-											<div className="mt-4 mmd:mt-0 mmd:pr-9">
-												<div className="flex rounded-md text-left text-base font-medium leading-5 text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 mmd:text-sm">
-													<div className="flex border border-gray-300 shadow-sm">
-														<button className="px-3 py-1 text-center hover:bg-gray-200">
-															-
-														</button>
-														<div className="px-3 py-1 text-center">{1}</div>
-														<button
-															className={`px-3 py-1 text-center hover:bg-gray-200`}
-															//  ${ 	btndisable ? "text-gray-300" : "text-gray-800"
-															// }`}
-														>
-															+
-														</button>
-													</div>
-												</div>
-
-												<div className="absolute right-0 top-0">
-													<button
-														type="button"
-														className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
-													>
-														<span className="sr-only">Remove</span>
-														<XMarkIcon className="h-5 w-5" aria-hidden="true" />
-													</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</li>
+							{data.map((product:CartDataPropType, productIdx) => (
+							<CartItem product={product} key={productIdx}/>
 							))}
 						</ul>
 					</section>
