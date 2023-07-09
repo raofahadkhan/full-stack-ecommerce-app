@@ -1,9 +1,9 @@
 "use client";
 import { IProduct } from "@/types/types";
 import Image from "next/image";
+import { useState } from "react";
 import { BsCart } from "react-icons/bs";
 import { urlForImage } from "../../../sanity/lib/image";
-import { useState } from "react";
 
 const postDataToDb = async (data: any) => {
 	try {

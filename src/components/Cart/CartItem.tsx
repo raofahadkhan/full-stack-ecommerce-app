@@ -71,6 +71,9 @@ const CartItem = ({ product }: { product: CartDataPropType }) => {
 						<p className="mt-1 text-sm font-medium text-gray-900">
 							Price: ${product.product_price}
 						</p>
+						<p className="mt-1 text-sm font-medium text-gray-900">
+							Sub Total: ${product.product_price * product.quantity}
+						</p>
 					</div>
 
 					<div className="mt-4 mmd:mt-0 mmd:pr-9">
@@ -82,7 +85,9 @@ const CartItem = ({ product }: { product: CartDataPropType }) => {
 									onClick={(e) => {
 										e.preventDefault();
 										setBtndisable(true);
-										setUpdatedQty(updatedQty + 1);
+										updatedQty > 1
+											? setUpdatedQty(updatedQty - 1)
+											: deleteItemFromCart(product.id);
 										updateCartItemQty(product.id, updatedQty, "DECREASE");
 										refresh();
 										setTimeout(() => {
