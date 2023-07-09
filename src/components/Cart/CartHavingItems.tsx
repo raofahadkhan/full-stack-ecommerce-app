@@ -50,6 +50,7 @@ interface CartDataPropType {
 	user_id: string;
 	product_id: string;
 	product_title: string;
+	product_author: string;
 	product_image: string;
 	product_price: number;
 	quantity: number;
@@ -78,7 +79,7 @@ export default function CartHavingItems({
 							className="divide-y divide-gray-200 border-b border-t border-gray-200"
 						>
 							{data.map((product, productIdx) => (
-								<li key={product.id} className="flex py-6 mmd:py-10">
+								<li key={productIdx} className="flex py-6 mmd:py-10">
 									<div className="flex-shrink-0">
 										<img
 											src={product.product_image}
@@ -97,9 +98,9 @@ export default function CartHavingItems({
 														</p>
 													</h3>
 												</div>
-                        <p className="mt-1 text-sm font-medium text-gray-900">
+												<p className="mt-1 text-sm font-medium text-gray-900">
 													{/* ${product.product_price} */}
-                          By: Unknown Author
+													By: {product.product_author}
 												</p>
 												<p className="mt-1 text-sm font-medium text-gray-900">
 													Price: ${product.product_price}
@@ -107,7 +108,6 @@ export default function CartHavingItems({
 											</div>
 
 											<div className="mt-4 mmd:mt-0 mmd:pr-9">
-												
 												<div className="flex rounded-md text-left text-base font-medium leading-5 text-gray-700 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 mmd:text-sm">
 													<div className="flex border border-gray-300 shadow-sm">
 														<button className="px-3 py-1 text-center hover:bg-gray-200">

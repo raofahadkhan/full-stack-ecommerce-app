@@ -15,7 +15,8 @@ const postDataToDb = async (data: any) => {
 			body: JSON.stringify({
 				product_id: data.product_id,
 				product_title: data.product_title,
-				product_image: urlForImage(data.product_image).url(),
+				product_author: data.product_author,
+				product_image: urlForImage(data.product_image)?.url(),
 				product_price: data.product_price,
 				quantity: data.product_quantity,
 			}),
@@ -28,10 +29,11 @@ const postDataToDb = async (data: any) => {
 const Product_Detail = ({ data }: { data: IProduct }) => {
 	const [qty, setQty] = useState(1);
 	let product = {
-		product_id: data._id,
-		product_title: data.name,
-		product_image: data.image,
-		product_price: data.price,
+		product_id: data?._id,
+		product_title: data?.name,
+		product_author: data?.author.name,
+		product_image: data?.image,
+		product_price: data?.price,
 		product_quantity: qty,
 	};
 	return (
@@ -39,7 +41,7 @@ const Product_Detail = ({ data }: { data: IProduct }) => {
 			<div className="flex gap-[34px] sm:block md:flex lg:flex xl:flex">
 				<div className="sm:mb-[20px] md:mb-[unset] lg:mb-[unset] xl:mb-[unset]">
 					<Image
-						src={urlForImage(data.image).url()}
+						src={urlForImage(data?.image).url()}
 						width={250}
 						height={250}
 						alt="home"

@@ -9,7 +9,7 @@ export const GET = async (request: NextRequest) => {
 	const req = request.nextUrl;
 	const uid = req.searchParams.get("user_id") as string;
 	try {
-		await sql`CREATE TABLE IF NOT EXISTS CART(id SERIAL, user_id varchar(255) NOT NULL, product_id varchar(255) NOT NULL, product_title varchar(255) NOT NULL, product_image varchar(255) NOT NULL, product_price integer NOT NULL, quantity integer NOT NULL);`;
+		await sql`CREATE TABLE IF NOT EXISTS CART(id SERIAL, user_id varchar(255) NOT NULL, product_id varchar(255) NOT NULL, product_title varchar(255) NOT NULL, product_author varchar(255) NOT NULL, product_image varchar(255) NOT NULL, product_price integer NOT NULL, quantity integer NOT NULL);`;
 		const res = await db
 			.select()
 			.from(cartTable)
@@ -33,13 +33,14 @@ export const POST = async (request: NextRequest) => {
 	}
 
 	try {
-		await sql`CREATE TABLE IF NOT EXISTS CART(id SERIAL, user_id varchar(255), product_id varchar(255), product_title varchar(255), product_image varchar(255), product_price integer, quantity integer);`;
+		await sql`CREATE TABLE IF NOT EXISTS CART(id SERIAL, user_id varchar(255) NOT NULL, product_id varchar(255) NOT NULL, product_title varchar(255) NOT NULL, product_author varchar(255) NOT NULL, product_image varchar(255) NOT NULL, product_price integer NOT NULL, quantity integer NOT NULL);`;
 		const res = await db
 			.insert(cartTable)
 			.values({
 				user_id: cookies().get("user_id")?.value as string,
 				product_id: req.product_id,
 				product_title: req.product_title,
+				product_author: req.product_author,
 				product_image: req.product_image,
 				product_price: req.product_price,
 				quantity: req.quantity,
