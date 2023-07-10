@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const deleteItemFromCart = async (itemId: number) => {
 	try {
-		await fetch(`${BASE_PATH}/api/cart`, {
+		await fetch(`/api/cart`, {
 			method: "DELETE",
 			headers: {
 				"Content-type": "application/json",
@@ -27,7 +27,7 @@ const updateCartItemQty = async (
 	updated_qty = action === "INCREASE" ? updated_qty + 1 : updated_qty - 1;
 
 	try {
-		await fetch(`${BASE_PATH}/api/cart`, {
+		await fetch(`/api/cart`, {
 			method: "PUT",
 			headers: {
 				"Content-type": "application/json",

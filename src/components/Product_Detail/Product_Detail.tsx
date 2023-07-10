@@ -17,6 +17,7 @@ const postDataToDb = async (data: any) => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
+				user_id: data.user_id,
 				product_id: data.product_id,
 				product_title: data.product_title,
 				product_author: data.product_author,
@@ -38,7 +39,7 @@ const updateCartItemQty = async (
 	const updatedQty = updated_qty + previous_qty;
 
 	try {
-		await fetch(`${BASE_PATH}/api/cart`, {
+		await fetch(`/api/cart`, {
 			method: "PUT",
 			headers: {
 				"Content-type": "application/json",
@@ -53,9 +54,9 @@ const updateCartItemQty = async (
 
 function Product_Detail({ data }: { data: IProduct }) {
 	// const { refresh } = useRouter();
-	const userId = "4cb1ae7a-08e8-4995-afaf-f852dabf80a2";
 	// const [cartData, setCartData] = useState<any>();
 	// const [fetchApi, setFetchApi] = useState(1);
+	const userId = "2eaa207f-fcad-495d-b112-bcd4443aaf5d";
 	const { data: cartData } = useSWR(`/api/cart?user_id=${userId}`, (url: any) =>
 		fetch(url).then((res) => res.json())
 	);
@@ -78,6 +79,7 @@ function Product_Detail({ data }: { data: IProduct }) {
 	// const [btndisable, setBtndisable] = useState(true);
 	const [qty, setQty] = useState(1);
 	let product = {
+		user_id: userId,
 		product_id: data?._id,
 		product_title: data?.name,
 		product_author: data?.author.name,
@@ -112,7 +114,6 @@ function Product_Detail({ data }: { data: IProduct }) {
 						<h2 className="text-[20px] font-bold text-[#000]">
 							{data.name}: {data.tagline}
 						</h2>
-						<div>{JSON.stringify(cartData)}</div>
 						<p>
 							by, <span>{data.author.name}</span>
 						</p>

@@ -12,7 +12,7 @@ const getCartData = async (userID: string) => {
 };
 
 const Page = async () => {
-	const cartData = await getCartData("4cb1ae7a-08e8-4995-afaf-f852dabf80a2");
+	const cartData = await getCartData("2eaa207f-fcad-495d-b112-bcd4443aaf5d");
 	return (
 		<div>
 			{cartData && cartData?.res?.length == 0 ? (

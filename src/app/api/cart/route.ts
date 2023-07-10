@@ -24,20 +24,21 @@ export const GET = async (request: NextRequest) => {
 
 export const POST = async (request: NextRequest) => {
 	const req = await request.json();
-	const uid = uuid();
-	const setCookies = cookies();
-	const user_id = setCookies.get("user_id")?.value;
+	// const uid = uuid();
+	// const setCookies = cookies();
+	// const user_id = setCookies.get("user_id")?.value;
 
-	if (!user_id) {
-		setCookies.set("user_id", uid);
-	}
+	// if (!user_id) {
+	// 	setCookies.set("user_id", uid);
+	// }
 
 	try {
 		await sql`CREATE TABLE IF NOT EXISTS CART(id SERIAL, user_id varchar(255) NOT NULL, product_id varchar(255) NOT NULL, product_title varchar(255) NOT NULL, product_author varchar(255) NOT NULL, product_image varchar(255) NOT NULL, product_price integer NOT NULL, quantity integer NOT NULL);`;
 		const res = await db
 			.insert(cartTable)
 			.values({
-				user_id: cookies().get("user_id")?.value as string,
+				// user_id: cookies().get("user_id")?.value as string,
+				user_id: req.user_id,
 				product_id: req.product_id,
 				product_title: req.product_title,
 				product_author: req.product_author,
