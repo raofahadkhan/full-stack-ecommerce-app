@@ -35,7 +35,7 @@ export default function CartHavingItems({
 							role="list"
 							className="divide-y divide-gray-200 border-b border-t border-gray-200"
 						>
-							{data.map((product:CartDataPropType, productIdx) => (
+							{data?.map((product:CartDataPropType, productIdx) => (
 							<CartItem product={product} key={productIdx}/>
 							))}
 						</ul>

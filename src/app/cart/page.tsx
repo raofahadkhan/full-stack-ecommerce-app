@@ -1,13 +1,14 @@
 import CartHavingItems from "@/components/Cart/CartHavingItems";
 import EmptyCart from "@/components/Cart/EmptyCart";
 import { BASE_PATH } from "@/lib/basepath";
-import { cookies } from "next/headers";
 
 const getCartData = async (userID: string) => {
-	const res = await fetch(`${BASE_PATH}/api/cart?user_id=${userID}`, {
-		cache: "no-store",
-	});
-	return res.json();
+	try {
+		const res = await fetch(`${BASE_PATH}/api/cart?user_id=${userID}`, {
+			cache: "no-store",
+		});
+		return res.json();
+	} catch (error) {}
 };
 
 const Page = async () => {

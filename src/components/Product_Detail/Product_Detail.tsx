@@ -1,9 +1,13 @@
 "use client";
+import { BASE_PATH } from "@/lib/basepath";
 import { IProduct } from "@/types/types";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsCart } from "react-icons/bs";
+import useSWR from "swr";
 import { urlForImage } from "../../../sanity/lib/image";
+import { CartDataPropType } from "../Cart/CartHavingItems";
+import { useRouter } from "next/navigation";
 
 const postDataToDb = async (data: any) => {
 	try {
@@ -26,7 +30,52 @@ const postDataToDb = async (data: any) => {
 	}
 };
 
-const Product_Detail = ({ data }: { data: IProduct }) => {
+const updateCartItemQty = async (
+	cartItemId: number,
+	updated_qty: number,
+	previous_qty: number
+) => {
+	const updatedQty = updated_qty + previous_qty;
+
+	try {
+		await fetch(`${BASE_PATH}/api/cart`, {
+			method: "PUT",
+			headers: {
+				"Content-type": "application/json",
+			},
+			body: JSON.stringify({
+				id: cartItemId,
+				quantity: updatedQty,
+			}),
+		});
+	} catch (error) {}
+};
+
+function Product_Detail({ data }: { data: IProduct }) {
+	// const { refresh } = useRouter();
+	const userId = "4cb1ae7a-08e8-4995-afaf-f852dabf80a2";
+	// const [cartData, setCartData] = useState<any>();
+	// const [fetchApi, setFetchApi] = useState(1);
+	const { data: cartData } = useSWR(`/api/cart?user_id=${userId}`, (url: any) =>
+		fetch(url).then((res) => res.json())
+	);
+	// setCartData(data);
+	// useEffect(() => {
+	// 	const getCartData = async (userID: string) => {
+	// 		try {
+	// 			const res = await fetch(`${BASE_PATH}/api/cart?user_id=${userID}`, {
+	// 				cache: "no-store",
+	// 			});
+	// 			return res.json();
+	// 		} catch (error) {}
+	// 	};
+	// 	const res = getCartData(userId);
+	// 	setCartData(res);
+	// }, []);
+	const dataForCartUpdation: CartDataPropType = cartData?.res?.find(
+		(item: CartDataPropType) => item.product_id === data._id
+	);
+	// const [btndisable, setBtndisable] = useState(true);
 	const [qty, setQty] = useState(1);
 	let product = {
 		product_id: data?._id,
@@ -36,6 +85,16 @@ const Product_Detail = ({ data }: { data: IProduct }) => {
 		product_price: data?.price,
 		product_quantity: qty,
 	};
+	// setTimeout(() => {
+	// 	setBtndisable(false);
+	// }, 1000);
+	// useEffect(() => {
+	// 	if (cartData?.res?.length === 0) {
+	// 		setBtndisable(true);
+	// 	} else {
+	// 		setBtndisable(false);
+	// 	}
+	// }, [btndisable]);
 	return (
 		<>
 			<div className="flex gap-[34px] sm:block md:flex lg:flex xl:flex">
@@ -53,7 +112,7 @@ const Product_Detail = ({ data }: { data: IProduct }) => {
 						<h2 className="text-[20px] font-bold text-[#000]">
 							{data.name}: {data.tagline}
 						</h2>
-
+						<div>{JSON.stringify(cartData)}</div>
 						<p>
 							by, <span>{data.author.name}</span>
 						</p>
@@ -81,8 +140,27 @@ const Product_Detail = ({ data }: { data: IProduct }) => {
 
 					<div className="mt-[40px] flex items-center gap-3">
 						<button
-							onClick={() => postDataToDb(product)}
-							className="prodsc:text-sm subsc:w-[50%] navsc:w-auto navsc:px-4 flex items-center justify-center gap-2 bg-[#212121] px-2 py-[0.65rem] text-xs font-medium leading-4 text-[#fff]"
+							// disabled={btndisable}
+							onClick={(e) => {
+								// setBtndisable(true);
+								e.preventDefault();
+								console.log("datatatatat", dataForCartUpdation);
+								if (dataForCartUpdation) {
+									updateCartItemQty(
+										dataForCartUpdation.id,
+										qty,
+										dataForCartUpdation.quantity
+									);
+								} else {
+									postDataToDb(product);
+									// refresh();
+									// setFetchApi(fetchApi+1);
+								}
+								// setTimeout(() => {
+								// 	setBtndisable(false);
+								// }, 2000);
+							}}
+							className={`prodsc:text-sm subsc:w-[50%] navsc:w-auto navsc:px-4 flex cursor-pointer items-center justify-center gap-2 bg-[#212121] px-2 py-[0.65rem] text-xs font-medium leading-4 text-[#fff]`}
 						>
 							<BsCart size={22} />
 							<span className="text-[16px]">Add to Cart</span>
@@ -168,6 +246,6 @@ const Product_Detail = ({ data }: { data: IProduct }) => {
 			</div>
 		</>
 	);
-};
+}
 
 export default Product_Detail;
