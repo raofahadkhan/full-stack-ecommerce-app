@@ -1,6 +1,7 @@
 import CartHavingItems from "@/components/Cart/CartHavingItems";
 import EmptyCart from "@/components/Cart/EmptyCart";
 import { BASE_PATH } from "@/lib/basepath";
+import { cookies } from "next/headers";
 
 const getCartData = async (userID: string) => {
 	try {
@@ -12,7 +13,8 @@ const getCartData = async (userID: string) => {
 };
 
 const Page = async () => {
-	const cartData = await getCartData("2eaa207f-fcad-495d-b112-bcd4443aaf5d");
+	const userID = cookies().get("user_id")?.value as string;
+	const cartData = await getCartData(userID);
 	return (
 		<div>
 			{cartData && cartData?.res?.length == 0 ? (

@@ -17,7 +17,7 @@ const postDataToDb = async (data: any) => {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				user_id: data.user_id,
+				// user_id: data.user_id,
 				product_id: data.product_id,
 				product_title: data.product_title,
 				product_author: data.product_author,

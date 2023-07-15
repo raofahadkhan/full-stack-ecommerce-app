@@ -4,7 +4,7 @@ import CartItem from "./CartItem";
 
 export interface CartDataPropType {
 	id: number;
-	user_id: string;
+	// user_id: string;
 	product_id: string;
 	product_title: string;
 	product_author: string;
