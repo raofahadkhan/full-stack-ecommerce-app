@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 const getCartData = async (userID: string) => {
 	try {
 		const res = await fetch(`${BASE_PATH}/api/cart?user_id=${userID}`, {
-			cache: "no-store",
+			cache: "no-cache",
 		});
 		return res.json();
 	} catch (error) {}
